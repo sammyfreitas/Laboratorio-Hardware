@@ -21,6 +21,7 @@ const products = [
   {id:'ssd-480',category:'storage',name:'Teclabs SSD 480',price:219.9,icon:'▱',short:'SSD SATA • 480 GB',specs:{Interface:'SATA III','Capacidade':'480 GB','Leitura':'até 550 MB/s','Formato':'2,5 polegadas'},notes:'Exige cabo SATA de dados e alimentação da fonte.'},
   {id:'nvme-500',category:'storage',name:'Teclabs NVMe 500',price:269.9,icon:'▱',short:'SSD M.2 NVMe • 500 GB',specs:{Interface:'PCIe 3.0 ×4','Capacidade':'500 GB','Leitura':'até 2500 MB/s','Formato':'M.2 2280'},notes:'Instalado diretamente no slot M.2 compatível da placa-mãe.'},
   {id:'gpu-basic',category:'gpu',name:'Teclabs Vision 4G',price:799.9,icon:'▰',short:'4 GB • PCIe x16 • 75 W',specs:{Memória:'4 GB GDDR6','Interface':'PCIe x16','Consumo':'75 W','Saídas':'HDMI e DisplayPort'},notes:'Opcional para o desafio atual porque os processadores disponíveis possuem vídeo integrado.'},
+  {id:'gpu-economy',category:'gpu',name:'Teclabs Start 2G',price:499,icon:'▰',short:'2 GB • PCIe x16 • 30 W',specs:{Memória:'2 GB GDDR5','Interface':'PCIe x16','Consumo':'30 W','Saídas':'HDMI, DVI e VGA','Alimentação extra':'Não'},notes:'Modelo econômico para vídeo, escritório e computadores com orçamento reduzido. Não exige conector adicional da fonte.'},
   {id:'cooler-box',category:'cooler',name:'Teclabs Air 95',price:99.9,icon:'✣',short:'Cooler a ar • 95 W',specs:{Tipo:'Ar','Capacidade térmica':'95 W','Conector':'CPU_FAN 4 pinos','Pasta térmica':'Incluída'},notes:'Compatibilidade depende do kit de fixação correspondente ao socket.'}
 ];
 
