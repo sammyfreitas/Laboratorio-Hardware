@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Teclabs Hardware Lab — laboratório virtual de montagem e manutenção de computadores." />
+  <title>Teclabs Hardware Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Página inicial do Teclabs Hardware Lab">
+      <span class="brand-mark" aria-hidden="true">TH</span>
+      <span><strong>Teclabs Hardware Lab</strong><small>Laboratório Virtual de Montagem e Manutenção</small></span>
+    </a>
+    <div class="top-actions">
+      <button id="themeToggle" class="icon-button" type="button" aria-label="Alternar tema">☾</button>
+      <button id="resetButton" class="button ghost" type="button">Reiniciar laboratório</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">MVP INTERATIVO • BANCADA 01</span>
+        <h1>Escolha, compare e monte seu primeiro computador virtual.</h1>
+        <p>Consulte o mini manual, respeite o orçamento e leve as peças corretas para a bancada. Os componentes são fictícios e as regras técnicas são educacionais.</p>
+      </div>
+      <div class="budget-card" aria-live="polite">
+        <span>Orçamento disponível</span>
+        <strong id="budgetTotal">R$ 2.500,00</strong>
+        <div class="budget-row"><span>Utilizado</span><b id="budgetUsed">R$ 0,00</b></div>
+        <div class="budget-row"><span>Saldo</span><b id="budgetRemaining">R$ 2.500,00</b></div>
+        <div class="progress"><span id="budgetProgress"></span></div>
+      </div>
+    </section>
+
+    <nav class="steps" aria-label="Etapas do laboratório">
+      <button class="step active" data-view="store"><span>1</span> Escolher peças</button>
+      <button class="step" data-view="bench"><span>2</span> Ir para a bancada</button>
+      <button class="step" data-view="boot"><span>3</span> Testar montagem</button>
+    </nav>
+
+    <section id="storeView" class="view active">
+      <div class="section-heading">
+        <div><span class="eyebrow">ESTOQUE TECLABS</span><h2>Estantes de componentes</h2></div>
+        <p>Selecione uma prateleira e examine as caixas. No computador, passe o mouse; no celular, toque em “Ver detalhes”.</p>
+      </div>
+
+      <div id="categoryShelf" class="category-shelf" aria-label="Categorias de peças"></div>
+
+      <div class="store-layout">
+        <section class="product-area">
+          <div class="shelf-title"><h3 id="shelfTitle">Placas-mãe</h3><span id="shelfCount"></span></div>
+          <div id="productShelf" class="product-shelf"></div>
+        </section>
+
+        <aside class="selection-panel">
+          <h3>Peças escolhidas</h3>
+          <div id="selectedList" class="selected-list"><p class="empty-message">Sua bancada ainda está vazia.</p></div>
+          <button id="goBench" class="button primary full" type="button" disabled>Ir para a bancada</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="benchView" class="view">
+      <div class="section-heading">
+        <div><span class="eyebrow">OFICINA</span><h2>Bancada de montagem</h2></div>
+        <p>Abra os encaixes antes de instalar. Arraste a peça ou selecione-a e depois clique no local correto.</p>
+      </div>
+
+      <div class="bench-layout">
+        <aside class="parts-tray">
+          <h3>Peças compradas</h3>
+          <div id="partsTray"></div>
+          <div class="rotate-help">↻ Clique na peça para girá-la antes de encaixar.</div>
+        </aside>
+
+        <div class="workbench">
+          <div class="bench-tools"><button id="openSocket" class="tool-button" type="button">Abrir socket</button><button id="openRam" class="tool-button" type="button">Abrir travas da RAM</button></div>
+          <div id="motherboard" class="motherboard" aria-label="Placa-mãe virtual">
+            <div class="board-label">TECLABS<br><small>EDU-H610M</small></div>
+            <div id="cpuSocket" class="drop-zone cpu-socket" data-accept="cpu"><span>CPU</span><i id="socketLid"></i></div>
+            <div id="ramSlot" class="drop-zone ram-slot" data-accept="ram"><b class="ram-latch top"></b><span>DDR4_A2</span><b class="ram-latch bottom"></b></div>
+            <div class="decor-slot pcie">PCIe x16</div>
+            <div class="decor-slot m2">M.2 NVMe</div>
+            <div class="power-port">ATX<br>24 PIN</div>
+            <div class="io-panel">USB • HDMI • LAN</div>
+          </div>
+          <div id="benchMessage" class="bench-message" aria-live="polite">Dica: abra o socket e as travas da memória antes de instalar as peças.</div>
+        </div>
+
+        <aside class="check-panel">
+          <h3>Checklist</h3>
+          <ul id="assemblyChecklist">
+            <li data-check="board" class="done">Placa-mãe posicionada</li>
+            <li data-check="socket">Socket aberto</li>
+            <li data-check="cpu">Processador instalado</li>
+            <li data-check="ram-open">Travas da RAM abertas</li>
+            <li data-check="ram">Memória instalada</li>
+          </ul>
+          <button id="testAssembly" class="button primary full" type="button" disabled>Testar montagem</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="bootView" class="view">
+      <div class="boot-stage">
+        <div id="pcCase" class="pc-case"><div class="power-light"></div><div class="fan">✣</div><button id="powerButton" type="button" aria-label="Ligar computador">⏻</button></div>
+        <div class="monitor"><div id="monitorScreen" class="monitor-screen"><span>Pressione o botão de energia</span></div><div class="monitor-stand"></div></div>
+      </div>
+      <div id="bootReport" class="boot-report">
+        <span class="eyebrow">PRIMEIRO BOOT</span>
+        <h2>Vamos descobrir se a montagem funciona?</h2>
+        <p>O resultado dependerá das peças escolhidas e das ações realizadas na bancada.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="manualDialog" class="manual-dialog">
+    <button id="closeManual" class="dialog-close" type="button" aria-label="Fechar">×</button>
+    <div id="manualContent"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    <p>Criado para demonstração em aula • Dados, valores e dispositivos são fictícios</p>
+    <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
