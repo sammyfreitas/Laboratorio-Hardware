@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.4.0" />
+  <link rel="stylesheet" href="css/style.css?v=0.5.0" />
 </head>
 <body>
   <header class="topbar">
@@ -100,6 +100,11 @@
               <button id="connectSataData" class="cable-button" type="button">Conectar cabo de dados</button>
               <button id="connectSataPower" class="cable-button" type="button">Conectar alimentação</button>
             </div>
+            <div class="bench-supplies" aria-label="Materiais e cabos da bancada">
+              <button id="applyThermalPaste" class="supply-item paste" type="button"><span>◉</span><b>Pasta térmica</b><small>Aplicar sobre a CPU</small></button>
+              <button id="connectBoardPower" class="supply-item atx-cable" type="button"><span>⌁</span><b>Cabo ATX 24 pinos</b><small>Alimentação da placa-mãe</small></button>
+              <div class="supply-item sata-cable"><span>⌁</span><b>Cabo SATA</b><small>Dados do SSD</small></div>
+            </div>
           </div>
           <div id="benchMessage" class="bench-message" aria-live="polite">Dica: abra o socket e as travas da memória antes de instalar as peças.</div>
         </div>
@@ -110,6 +115,8 @@
             <li data-check="board" class="done">Placa-mãe posicionada</li>
             <li data-check="socket">Socket aberto</li>
             <li data-check="cpu">Processador instalado</li>
+            <li data-check="thermal-paste">Pasta térmica aplicada</li>
+            <li data-check="board-power">Cabo ATX conectado</li>
             <li data-check="ram-open">Travas da RAM abertas</li>
             <li data-check="ram">Memória instalada</li>
             <li data-check="storage">Armazenamento instalado</li>
@@ -149,6 +156,6 @@
     <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
   </footer>
 
-  <script src="js/app.js?v=0.4.0"></script>
+  <script src="js/app.js?v=0.5.0"></script>
 </body>
 </html>
