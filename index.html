@@ -86,7 +86,7 @@
             <div id="cpuSocket" class="drop-zone cpu-socket" data-accept="cpu"><span>CPU</span><i id="socketLid"></i></div>
             <div id="coolerMount" class="drop-zone cooler-mount" data-accept="cooler"><span>COOLER</span></div>
             <div id="ramSlot" class="drop-zone ram-slot" data-accept="ram"><b class="ram-latch top"></b><span>DDR4_A2</span><b class="ram-latch bottom"></b></div>
-            <div class="decor-slot pcie">PCIe x16</div>
+            <div id="pcieSlot" class="drop-zone decor-slot pcie" data-accept="gpu">PCIe x16</div>
             <div id="m2Slot" class="drop-zone decor-slot m2" data-accept="storage" data-storage="nvme">M.2 NVMe</div>
             <div id="sataBay" class="drop-zone sata-bay" data-accept="storage" data-storage="sata">BAIA SSD SATA</div>
             <div class="power-port">ATX<br>24 PIN</div>
@@ -105,6 +105,7 @@
             <li data-check="ram">Memória instalada</li>
             <li data-check="storage">Armazenamento instalado</li>
             <li data-check="cooler">Cooler instalado</li>
+            <li data-check="gpu">Placa de vídeo instalada</li>
           </ul>
           <button id="testAssembly" class="button primary full" type="button" disabled>Testar montagem</button>
         </aside>
