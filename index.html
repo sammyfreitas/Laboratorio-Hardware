@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.3.0" />
+  <link rel="stylesheet" href="css/style.css?v=0.4.0" />
 </head>
 <body>
   <header class="topbar">
@@ -82,18 +82,24 @@
         <div class="workbench">
           <div class="bench-tools"><button id="openSocket" class="tool-button" type="button">Abrir socket</button><button id="openRam" class="tool-button" type="button">Abrir travas da RAM</button><button id="openCoolerLatch" class="tool-button" type="button">Abrir trava do cooler</button></div>
           <div id="motherboard" class="motherboard" aria-label="Placa-mãe virtual">
-            <div class="board-label">TECLABS<br><small>EDU-H610M</small></div>
+            <div class="board-label">TECLABS<br><small id="benchBoardModel">EDU-H610M</small></div>
             <div id="cpuSocket" class="drop-zone cpu-socket" data-accept="cpu"><span>CPU</span><i id="socketLid"></i></div>
             <div id="coolerMount" class="drop-zone cooler-mount" data-accept="cooler"><b class="cooler-clip clip-left"></b><span>COOLER<br><small>CPU_FAN →</small></span><b class="cooler-clip clip-right"></b></div>
-            <div id="ramSlotA2" class="drop-zone ram-slot ram-a2" data-accept="ram" data-ram-slot="A2"><b class="ram-latch top"></b><span>DDR4_A2</span><b class="ram-latch bottom"></b></div>
-            <div id="ramSlotB2" class="drop-zone ram-slot ram-b2" data-accept="ram" data-ram-slot="B2"><b class="ram-latch top"></b><span>DDR4_B2</span><b class="ram-latch bottom"></b></div>
+            <div id="ramSlotA2" class="drop-zone ram-slot ram-a2" data-accept="ram" data-ram-slot="A2"><b class="ram-latch top"></b><span>DDR4 1 • A2</span><b class="ram-latch bottom"></b></div>
+            <div id="ramSlotB2" class="drop-zone ram-slot ram-b2" data-accept="ram" data-ram-slot="B2"><b class="ram-latch top"></b><span>DDR4 2 • B2</span><b class="ram-latch bottom"></b></div>
             <div id="pcieSlot" class="drop-zone decor-slot pcie" data-accept="gpu">PCIe x16</div>
             <div id="m2Slot" class="drop-zone decor-slot m2" data-accept="storage" data-storage="nvme">M.2 NVMe</div>
+            <div class="sata-board-ports"><b>SATA 1</b><b>SATA 2</b></div>
             <div class="power-port">ATX<br>24 PIN</div>
             <div class="io-panel">USB • HDMI • LAN</div>
           </div>
           <div class="bench-accessories">
             <div id="sataBay" class="drop-zone sata-bay" data-accept="storage" data-storage="sata"><strong>BAIA DO GABINETE</strong><span>SSD SATA 2,5″</span></div>
+            <div id="sataConnections" class="sata-connections" hidden>
+              <strong>Conexões do SSD SATA</strong>
+              <button id="connectSataData" class="cable-button" type="button">Conectar cabo de dados</button>
+              <button id="connectSataPower" class="cable-button" type="button">Conectar alimentação</button>
+            </div>
           </div>
           <div id="benchMessage" class="bench-message" aria-live="polite">Dica: abra o socket e as travas da memória antes de instalar as peças.</div>
         </div>
@@ -107,6 +113,8 @@
             <li data-check="ram-open">Travas da RAM abertas</li>
             <li data-check="ram">Memória instalada</li>
             <li data-check="storage">Armazenamento instalado</li>
+            <li data-check="sata-data" hidden>Cabo SATA de dados conectado</li>
+            <li data-check="sata-power" hidden>Cabo de alimentação conectado</li>
             <li data-check="cooler">Cooler instalado</li>
             <li data-check="cooler-secured">Trava do cooler fechada</li>
             <li data-check="gpu">Placa de vídeo instalada</li>
@@ -141,6 +149,6 @@
     <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
   </footer>
 
-  <script src="js/app.js?v=0.3.0"></script>
+  <script src="js/app.js?v=0.4.0"></script>
 </body>
 </html>

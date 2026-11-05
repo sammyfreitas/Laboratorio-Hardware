@@ -24,7 +24,7 @@ const products = [
   {id:'cooler-box',category:'cooler',name:'Teclabs Air 95',price:99.9,icon:'✣',short:'Cooler a ar • 95 W',specs:{Tipo:'Ar','Capacidade térmica':'95 W','Conector':'CPU_FAN 4 pinos','Pasta térmica':'Incluída'},notes:'Compatibilidade depende do kit de fixação correspondente ao socket.'}
 ];
 
-const state={category:'motherboard',selected:{},socketOpen:false,ramOpen:false,cpuInstalled:false,ramInstalledSlots:{},storageInstalled:false,coolerInstalled:false,coolerLatchOpen:false,coolerSecured:false,gpuInstalled:false,activePart:null,rotations:{},booted:false};
+const state={category:'motherboard',selected:{},socketOpen:false,ramOpen:false,cpuInstalled:false,ramInstalledSlots:{},storageInstalled:false,sataDataConnected:false,sataPowerConnected:false,coolerInstalled:false,coolerLatchOpen:false,coolerSecured:false,gpuInstalled:false,activePart:null,rotations:{},booted:false};
 const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
 
 function renderCategories(){
@@ -71,6 +71,7 @@ function switchView(view){
 function compatibility(){const b=state.selected.motherboard,c=state.selected.cpu,r=state.selected.ram;return {cpu:(b.id==='mb-h610'&&c.socket==='LGA1700')||(b.id==='mb-a320'&&c.socket==='AM4'),ram:r.memoryType==='DDR4'};}
 
 function renderBench(){
+  $('#benchBoardModel').textContent=state.selected.motherboard?.name.replace('Teclabs ','')||'EDU-H610M';
   const installed={cpu:state.cpuInstalled,storage:state.storageInstalled,cooler:state.coolerInstalled,gpu:state.gpuInstalled};
   const regularParts=[state.selected.cpu,state.selected.storage,state.selected.cooler,state.selected.gpu].filter(p=>p&&!installed[p.category]);
   const installedRamIds=Object.values(state.ramInstalledSlots);
@@ -90,6 +91,12 @@ function renderBench(){
   $('#openCoolerLatch').disabled=state.coolerSecured;
   if(state.coolerInstalled){$('#coolerMount').classList.add('active');$('#coolerMount').insertAdjacentHTML('beforeend','<div class="installed-part cooler">✣</div>');}
   if(state.storageInstalled){const target=state.selected.storage.id.startsWith('nvme')?'m2Slot':'sataBay';$('#'+target).insertAdjacentHTML('beforeend','<div class="installed-part storage">SSD</div>');}
+  const sataSelected=state.selected.storage&&!state.selected.storage.id.startsWith('nvme');
+  $('#sataConnections').hidden=!sataSelected;
+  $('#connectSataData').classList.toggle('connected',state.sataDataConnected);
+  $('#connectSataData').textContent=state.sataDataConnected?'Cabo de dados conectado ✓':'Conectar cabo de dados';
+  $('#connectSataPower').classList.toggle('connected',state.sataPowerConnected);
+  $('#connectSataPower').textContent=state.sataPowerConnected?'Alimentação conectada ✓':'Conectar alimentação';
   if(state.gpuInstalled)$('#pcieSlot').insertAdjacentHTML('beforeend','<div class="installed-part gpu">GPU</div>');
   updateChecklist();
 }
@@ -113,16 +120,18 @@ function installPart(id,target,storageTarget,ramSlot){
 }
 
 function ramComplete(){return Object.keys(state.ramInstalledSlots).length===(state.selected.ram?.modules||0)}
-function updateChecklist(){const required=state.selected.ram?.modules||0,installed=Object.keys(state.ramInstalledSlots).length,ramDone=ramComplete()&&required>0;const map={socket:state.socketOpen,cpu:state.cpuInstalled,'ram-open':state.ramOpen,ram:ramDone,storage:state.selected.storage?state.storageInstalled:true,cooler:state.selected.cooler?state.coolerInstalled:true,'cooler-secured':state.selected.cooler?state.coolerSecured:true,gpu:state.selected.gpu?state.gpuInstalled:true};Object.entries(map).forEach(([k,v])=>$(`[data-check="${k}"]`).classList.toggle('done',v));$('[data-check="ram"]').textContent=`Memórias instaladas (${installed}/${required})`;$('#testAssembly').disabled=!(state.cpuInstalled&&ramDone&&(!state.selected.storage||state.storageInstalled)&&(!state.selected.cooler||state.coolerSecured)&&(!state.selected.gpu||state.gpuInstalled));}
+function updateChecklist(){const required=state.selected.ram?.modules||0,installed=Object.keys(state.ramInstalledSlots).length,ramDone=ramComplete()&&required>0;const sata=state.selected.storage&&!state.selected.storage.id.startsWith('nvme');const map={socket:state.socketOpen,cpu:state.cpuInstalled,'ram-open':state.ramOpen,ram:ramDone,storage:state.selected.storage?state.storageInstalled:true,'sata-data':!sata||state.sataDataConnected,'sata-power':!sata||state.sataPowerConnected,cooler:state.selected.cooler?state.coolerInstalled:true,'cooler-secured':state.selected.cooler?state.coolerSecured:true,gpu:state.selected.gpu?state.gpuInstalled:true};Object.entries(map).forEach(([k,v])=>$(`[data-check="${k}"]`).classList.toggle('done',v));$$('[data-check="sata-data"],[data-check="sata-power"]').forEach(el=>el.hidden=!sata);$('[data-check="ram"]').textContent=`Memórias instaladas (${installed}/${required})`;$('#testAssembly').disabled=!(state.cpuInstalled&&ramDone&&(!state.selected.storage||state.storageInstalled)&&(!sata||(state.sataDataConnected&&state.sataPowerConnected))&&(!state.selected.cooler||state.coolerSecured)&&(!state.selected.gpu||state.gpuInstalled));}
 
 function renderBoot(){state.booted=false;$('#pcCase').classList.remove('running');$('#monitorScreen').className='monitor-screen';$('#monitorScreen').innerHTML='<span>Pressione o botão de energia</span>';}
 function powerOn(){if(state.booted)return;state.booted=true;$('#pcCase').classList.add('running');const screen=$('#monitorScreen');screen.innerHTML='<span>TECLABS UEFI<br><br>Executando POST...</span>';setTimeout(()=>{const comp=compatibility();if(state.cpuInstalled&&ramComplete()&&comp.cpu&&comp.ram){screen.classList.add('success');screen.innerHTML='<span>TECLABS UEFI<br><br>CPU detectada ✓<br>Memórias detectadas ✓<br><br>Montagem inicial aprovada!</span>';$('#bootReport').innerHTML='<span class="eyebrow">MISSÃO CONCLUÍDA</span><h2>O computador passou pelo primeiro teste.</h2><p>Você escolheu componentes compatíveis e instalou a quantidade correta de módulos de memória. Nas próximas versões entraremos com pasta térmica, fonte, cabos e diagnóstico por bipes.</p>';}else{screen.classList.add('error');screen.innerHTML='<span>FALHA NO POST<br><br>Componente não detectado</span>';$('#bootReport').innerHTML='<span class="eyebrow">DIAGNÓSTICO NECESSÁRIO</span><h2>O computador não completou o POST.</h2><p>Dica: volte à bancada, confira a compatibilidade e verifique se todos os módulos do kit foram instalados.</p>'; }},1500);}
 
 function toast(message,error=false){const t=$('#toast');t.textContent=message;t.className=`toast show ${error?'error':''}`;clearTimeout(t.timer);t.timer=setTimeout(()=>t.classList.remove('show'),3500);}
-function reset(){Object.assign(state,{category:'motherboard',selected:{},socketOpen:false,ramOpen:false,cpuInstalled:false,ramInstalledSlots:{},storageInstalled:false,coolerInstalled:false,coolerLatchOpen:false,coolerSecured:false,gpuInstalled:false,activePart:null,rotations:{},booted:false});renderCategories();renderProducts();renderSelected();updateBudget();switchView('store');toast('Laboratório reiniciado.');}
+function reset(){Object.assign(state,{category:'motherboard',selected:{},socketOpen:false,ramOpen:false,cpuInstalled:false,ramInstalledSlots:{},storageInstalled:false,sataDataConnected:false,sataPowerConnected:false,coolerInstalled:false,coolerLatchOpen:false,coolerSecured:false,gpuInstalled:false,activePart:null,rotations:{},booted:false});renderCategories();renderProducts();renderSelected();updateBudget();switchView('store');toast('Laboratório reiniciado.');}
 
 $('#closeManual').onclick=()=>$('#manualDialog').close();$('#goBench').onclick=()=>switchView('bench');$('#openSocket').onclick=()=>{state.socketOpen=!state.socketOpen;toast(state.socketOpen?'Socket aberto. Alinhe o triângulo do processador.':'Socket fechado.');renderBench();};$('#openRam').onclick=()=>{state.ramOpen=!state.ramOpen;toast(state.ramOpen?'Travas dos dois slots de memória abertas.':'Travas das memórias fechadas.');renderBench();};$('#testAssembly').onclick=()=>switchView('boot');$('#powerButton').onclick=powerOn;$('#resetButton').onclick=reset;$('#themeToggle').onclick=()=>{const light=document.documentElement.dataset.theme==='light';document.documentElement.dataset.theme=light?'dark':'light';$('#themeToggle').textContent=light?'☾':'☀';};$$('.step').forEach(s=>s.onclick=()=>{if(s.dataset.view==='bench'&&!state.selected.motherboard)return toast('Escolha as peças antes de ir para a bancada.',true);if(s.dataset.view==='boot'&&!(state.cpuInstalled&&ramComplete()))return toast('Instale todos os módulos do kit antes do teste.',true);switchView(s.dataset.view);});
 
 $('#openCoolerLatch').onclick=()=>{if(!state.cpuInstalled)return toast('Instale o processador antes de preparar o suporte do cooler.',true);if(state.coolerInstalled&&state.coolerLatchOpen){state.coolerLatchOpen=false;state.coolerSecured=true;toast('Trava do cooler fechada. Cooler fixado corretamente.');}else if(!state.coolerInstalled){state.coolerLatchOpen=!state.coolerLatchOpen;toast(state.coolerLatchOpen?'Trava do suporte aberta. Posicione o cooler com o cabo voltado para CPU_FAN.':'Trava do suporte fechada.');}renderBench();};
+$('#connectSataData').onclick=()=>{if(!state.storageInstalled)return toast('Instale o SSD SATA na baia antes de conectar o cabo de dados.',true);state.sataDataConnected=!state.sataDataConnected;toast(state.sataDataConnected?'Cabo SATA ligado à placa-mãe e ao SSD.':'Cabo SATA desconectado.');renderBench();};
+$('#connectSataPower').onclick=()=>{if(!state.storageInstalled)return toast('Instale o SSD SATA na baia antes de conectar a alimentação.',true);state.sataPowerConnected=!state.sataPowerConnected;toast(state.sataPowerConnected?'Cabo de alimentação da fonte conectado ao SSD.':'Alimentação do SSD desconectada.');renderBench();};
 
 renderCategories();renderProducts();renderSelected();updateBudget();
