@@ -1,0 +1,24 @@
+name: Destravar GitHub Pages
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/cancel-stuck-pages.yml"
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancelar deployment antigo preso
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/${{ github.repository }}/pages/deployments/14950b112cb09e35cef316d777894a44959325b7/cancel
