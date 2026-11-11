@@ -47,9 +47,20 @@ function renderCategories(){
 function renderProducts(){
   const category=categories.find(c=>c.id===state.category); const list=products.filter(p=>p.category===state.category);
   $('#shelfTitle').textContent=category.name; $('#shelfCount').textContent=`${list.length} modelos disponíveis`;
-  $('#productShelf').innerHTML=list.map(p=>`<article class="product-box"><div class="product-visual">${p.icon}</div><h4>${p.name}</h4><p>${p.short}</p><div class="product-price">${money.format(p.price)}</div><div class="product-actions"><button data-manual="${p.id}">Ver detalhes</button><button class="buy" data-buy="${p.id}" ${state.selected[p.category]?.id===p.id?'disabled':''}>${state.selected[p.category]?.id===p.id?'Escolhido':'Escolher'}</button></div></article>`).join('');
+  $('#productShelf').innerHTML=list.map(p=>`<article class="product-box"><div class="product-visual visual-${p.category} ${p.category==='motherboard'?'board-'+p.id:''}">${productVisual(p)}</div><span class="catalog-type">${partType(p)}</span><h4>${p.name}</h4><p>${p.short}</p><div class="product-price">${money.format(p.price)}</div><div class="product-actions"><button data-manual="${p.id}">Ver detalhes</button><button class="buy" data-buy="${p.id}" ${state.selected[p.category]?.id===p.id?'disabled':''}>${state.selected[p.category]?.id===p.id?'Escolhido':'Escolher'}</button></div></article>`).join('');
   $$('[data-manual]').forEach(b=>b.onclick=()=>openManual(b.dataset.manual));
   $$('[data-buy]').forEach(b=>b.onclick=()=>selectProduct(b.dataset.buy));
+}
+
+function productVisual(p){
+  if(p.category==='motherboard')return '<div class="mini-board"><i></i><i></i><i></i><b></b><span></span><em></em></div>';
+  if(p.category==='cpu')return '<div class="mini-cpu"><span>CPU</span></div>';
+  if(p.category==='ram')return `<div class="mini-ram"><i></i><i></i><i></i><i></i><i></i><b>DDR4</b></div>`;
+  if(p.category==='storage'&&p.id.startsWith('nvme'))return '<div class="mini-nvme"><i></i><i></i><i></i><b>NVMe</b></div>';
+  if(p.category==='storage'&&p.id.startsWith('hdd'))return '<div class="mini-drive hdd"><i></i><b>HDD</b></div>';
+  if(p.category==='storage')return '<div class="mini-drive ssd"><b>SSD</b><span>SATA</span></div>';
+  if(p.category==='gpu')return '<div class="mini-gpu"><i></i><b>GPU</b><span></span></div>';
+  return '<div class="mini-cooler"><i>✣</i><b></b></div>';
 }
 
 function openManual(id){
@@ -86,6 +97,8 @@ function partType(p){return {motherboard:'Placa-mãe',cpu:'Processador',ram:'Mem
 
 function renderBench(){
   $('#benchBoardModel').textContent=state.selected.motherboard?.name.replace('Teclabs ','')||'EDU-H610M';
+  $('#motherboard').classList.remove('model-h610','model-a320','model-b450');
+  $('#motherboard').classList.add(state.selected.motherboard?.id==='mb-a320'?'model-a320':state.selected.motherboard?.id==='mb-b450'?'model-b450':'model-h610');
   const installed={cpu:state.cpuInstalled,storage:state.storageInstalled,cooler:state.coolerInstalled,gpu:state.gpuInstalled};
   const regularParts=[state.selected.cpu,state.selected.storage,state.selected.cooler,state.selected.gpu].filter(p=>p&&!installed[p.category]);
   const installedRamIds=Object.values(state.ramInstalledSlots);
