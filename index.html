@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.7.1" />
+  <link rel="stylesheet" href="css/style.css?v=0.8.0" />
 </head>
 <body>
   <header class="topbar">
@@ -94,6 +94,12 @@
           </aside>
           <div id="motherboard" class="motherboard" aria-label="Placa-mãe virtual">
             <div class="board-label">TECLABS<br><small id="benchBoardModel">EDU-H610M</small></div>
+            <div class="board-traces" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="board-chip chip-north" aria-hidden="true"><span>CHIPSET</span></div>
+            <div class="board-chip chip-south" aria-hidden="true"><span>BIOS</span></div>
+            <div class="board-heatsink" aria-hidden="true"><b></b><b></b><b></b><b></b></div>
+            <div class="board-capacitors" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="board-headers" aria-hidden="true"><i>USB</i><i>FAN</i><i>F_PANEL</i></div>
             <div id="cpuSocket" class="drop-zone cpu-socket" data-accept="cpu"><span>CPU</span><i id="socketLid"></i></div>
             <div id="coolerMount" class="drop-zone cooler-mount" data-accept="cooler"><b class="cooler-clip clip-left"></b><span>COOLER<br><small>CPU_FAN →</small></span><b class="cooler-clip clip-right"></b></div>
             <div id="ramSlotA2" class="drop-zone ram-slot ram-a2" data-accept="ram" data-ram-slot="A2"><b class="ram-latch top"></b><span>DDR4 1 • A2</span><b class="ram-latch bottom"></b></div>
@@ -166,6 +172,6 @@
     <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
   </footer>
 
-  <script src="js/app.js?v=0.7.1"></script>
+  <script src="js/app.js?v=0.8.0"></script>
 </body>
 </html>
