@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.5.0" />
+  <link rel="stylesheet" href="css/style.css?v=0.7.0" />
 </head>
 <body>
   <header class="topbar">
@@ -31,9 +31,14 @@
       </div>
       <div class="budget-card" aria-live="polite">
         <span>Orçamento disponível</span>
-        <strong id="budgetTotal">R$ 2.500,00</strong>
+        <strong id="budgetTotal">R$ 2.700,00</strong>
+        <div class="budget-options" aria-label="Escolher orçamento inicial">
+          <button type="button" data-budget="2700" class="active">R$ 2.700</button>
+          <button type="button" data-budget="3000">R$ 3.000</button>
+          <button type="button" data-budget="3500">R$ 3.500</button>
+        </div>
         <div class="budget-row"><span>Utilizado</span><b id="budgetUsed">R$ 0,00</b></div>
-        <div class="budget-row"><span>Saldo</span><b id="budgetRemaining">R$ 2.500,00</b></div>
+        <div class="budget-row"><span>Saldo</span><b id="budgetRemaining">R$ 2.700,00</b></div>
         <div class="progress"><span id="budgetProgress"></span></div>
       </div>
     </section>
@@ -81,6 +86,12 @@
 
         <div class="workbench">
           <div class="bench-tools"><button id="openSocket" class="tool-button" type="button">Abrir socket</button><button id="openRam" class="tool-button" type="button">Abrir travas da RAM</button><button id="openCoolerLatch" class="tool-button" type="button">Abrir trava do cooler</button></div>
+          <aside class="cable-rack" aria-label="Cabos disponíveis na bancada">
+            <strong>Cabos disponíveis</strong>
+            <button id="connectBoardPower" class="hanging-cable cable-atx" type="button"><span class="plug"></span><b>ATX 24 pinos</b><small>Fonte ↔ placa-mãe</small></button>
+            <button id="connectSataData" class="hanging-cable cable-data" type="button"><span class="plug"></span><b>SATA de dados</b><small>SSD ↔ SATA 1</small></button>
+            <button id="connectSataPower" class="hanging-cable cable-power" type="button"><span class="plug"></span><b>Alimentação SATA</b><small>Fonte ↔ SSD/HD</small></button>
+          </aside>
           <div id="motherboard" class="motherboard" aria-label="Placa-mãe virtual">
             <div class="board-label">TECLABS<br><small id="benchBoardModel">EDU-H610M</small></div>
             <div id="cpuSocket" class="drop-zone cpu-socket" data-accept="cpu"><span>CPU</span><i id="socketLid"></i></div>
@@ -97,13 +108,12 @@
             <div id="sataBay" class="drop-zone sata-bay" data-accept="storage" data-storage="sata"><strong>BAIA DO GABINETE</strong><span>SSD SATA 2,5″</span></div>
             <div id="sataConnections" class="sata-connections" hidden>
               <strong>Conexões do SSD SATA</strong>
-              <button id="connectSataData" class="cable-button" type="button">Conectar cabo de dados</button>
-              <button id="connectSataPower" class="cable-button" type="button">Conectar alimentação</button>
+              <span id="sataDataStatus">Dados: aguardando ligação</span>
+              <span id="sataPowerStatus">Energia: aguardando ligação</span>
             </div>
             <div class="bench-supplies" aria-label="Materiais e cabos da bancada">
               <button id="applyThermalPaste" class="supply-item paste" type="button"><span>◉</span><b>Pasta térmica</b><small>Aplicar sobre a CPU</small></button>
-              <button id="connectBoardPower" class="supply-item atx-cable" type="button"><span>⌁</span><b>Cabo ATX 24 pinos</b><small>Alimentação da placa-mãe</small></button>
-              <div class="supply-item sata-cable"><span>⌁</span><b>Cabo SATA</b><small>Dados do SSD</small></div>
+              <div class="supply-item cable-guide"><span>↯</span><b>Escolha os cabos na lateral</b><small>Cada cabo mostra as duas pontas</small></div>
             </div>
           </div>
           <div id="benchMessage" class="bench-message" aria-live="polite">Dica: abra o socket e as travas da memória antes de instalar as peças.</div>
@@ -156,6 +166,6 @@
     <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
   </footer>
 
-  <script src="js/app.js?v=0.6.0"></script>
+  <script src="js/app.js?v=0.7.0"></script>
 </body>
 </html>
