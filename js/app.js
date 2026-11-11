@@ -11,12 +11,21 @@ const categories = [
 ];
 
 const products = [
-  {id:'mb-h610',category:'motherboard',name:'Teclabs EDU-H610M',price:649.9,icon:'▦',short:'Micro-ATX • LGA1700 • DDR4',specs:{Socket:'LGA1700',Chipset:'H610','Memória':'2 × DDR4, máximo 64 GB','Velocidade':'até 3200 MT/s','Armazenamento':'1 × M.2 NVMe + 4 × SATA','Formato':'Micro-ATX'},notes:'Compatível com processadores Intel de 12ª e 13ª gerações cadastrados no laboratório.'},
-  {id:'mb-a320',category:'motherboard',name:'Teclabs EDU-A320M',price:459.9,icon:'▦',short:'Micro-ATX • AM4 • DDR4',specs:{Socket:'AM4',Chipset:'A320','Memória':'2 × DDR4, máximo 32 GB','Velocidade':'até 2933 MT/s','Armazenamento':'1 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Plataforma econômica. Alguns processadores exigem atualização de BIOS.'},
-  {id:'mb-b450',category:'motherboard',name:'Teclabs PRO-B450M',price:579.9,icon:'▦',short:'Micro-ATX • AM4 • DDR4',specs:{Socket:'AM4',Chipset:'B450','Memória':'2 × DDR4, máximo 64 GB','Velocidade':'até 3200 MT/s','Armazenamento':'1 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Placa intermediária com maior capacidade de memória.'},
+  {id:'mb-h510',category:'motherboard',name:'Teclabs EDU-H510M',price:439.9,icon:'▦',short:'Micro-ATX • LGA1200 • DDR4',socket:'LGA1200',memoryType:'DDR4',maxRam:64,platform:'intel',specs:{Socket:'LGA1200',Chipset:'H510','Memória':'2 × DDR4, máximo 64 GB','Velocidade':'até 3200 MT/s','Armazenamento':'1 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Placa Intel econômica para processadores de 10ª e 11ª gerações.'},
+  {id:'mb-b560',category:'motherboard',name:'Teclabs PRO-B560M',price:579.9,icon:'▦',short:'Micro-ATX • LGA1200 • DDR4',socket:'LGA1200',memoryType:'DDR4',maxRam:128,platform:'intel',specs:{Socket:'LGA1200',Chipset:'B560','Memória':'4 × DDR4, máximo 128 GB','Velocidade':'até 3200 MT/s','Armazenamento':'2 × M.2 + 6 × SATA','Formato':'Micro-ATX'},notes:'Placa Intel intermediária com quatro slots de memória.'},
+  {id:'mb-b660',category:'motherboard',name:'Teclabs PRO-B660M',price:789.9,icon:'▦',short:'Micro-ATX • LGA1700 • DDR4',socket:'LGA1700',memoryType:'DDR4',maxRam:128,platform:'intel',specs:{Socket:'LGA1700',Chipset:'B660','Memória':'4 × DDR4, máximo 128 GB','Velocidade':'até 3200 MT/s','Armazenamento':'2 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Placa Intel intermediária para computadores de maior desempenho.'},
+  {id:'mb-b760',category:'motherboard',name:'Teclabs MAX-B760M',price:949.9,icon:'▦',short:'Micro-ATX • LGA1700 • DDR5',socket:'LGA1700',memoryType:'DDR5',maxRam:192,platform:'intel',specs:{Socket:'LGA1700',Chipset:'B760','Memória':'4 × DDR5, máximo 192 GB','Velocidade':'até 6000 MT/s','Armazenamento':'3 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Placa Intel avançada. Exige memória DDR5.'},
+  {id:'mb-h610',category:'motherboard',name:'Teclabs EDU-H610M',price:649.9,icon:'▦',short:'Micro-ATX • LGA1700 • DDR4',socket:'LGA1700',memoryType:'DDR4',maxRam:64,platform:'intel',specs:{Socket:'LGA1700',Chipset:'H610','Memória':'2 × DDR4, máximo 64 GB','Velocidade':'até 3200 MT/s','Armazenamento':'1 × M.2 NVMe + 4 × SATA','Formato':'Micro-ATX'},notes:'Compatível com processadores Intel de 12ª e 13ª gerações cadastrados no laboratório.'},
+  {id:'mb-a320',category:'motherboard',name:'Teclabs EDU-A320M',price:459.9,icon:'▦',short:'Micro-ATX • AM4 • DDR4',socket:'AM4',memoryType:'DDR4',maxRam:32,platform:'amd',specs:{Socket:'AM4',Chipset:'A320','Memória':'2 × DDR4, máximo 32 GB','Velocidade':'até 2933 MT/s','Armazenamento':'1 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Plataforma econômica. Alguns processadores exigem atualização de BIOS.'},
+  {id:'mb-b450',category:'motherboard',name:'Teclabs PRO-B450M',price:579.9,icon:'▦',short:'Micro-ATX • AM4 • DDR4',socket:'AM4',memoryType:'DDR4',maxRam:64,platform:'amd',specs:{Socket:'AM4',Chipset:'B450','Memória':'2 × DDR4, máximo 64 GB','Velocidade':'até 3200 MT/s','Armazenamento':'1 × M.2 + 4 × SATA','Formato':'Micro-ATX'},notes:'Placa intermediária com maior capacidade de memória.'},
+  {id:'cpu-i3-10105',category:'cpu',name:'CoreLab i3-10105',price:479.9,icon:'▣',short:'LGA1200 • 4 núcleos • vídeo integrado',socket:'LGA1200',specs:{Socket:'LGA1200','Núcleos / threads':'4 / 8','Frequência':'3,7–4,4 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Intel Core i3 econômico para placas H510 e B560.'},
+  {id:'cpu-i5-11400',category:'cpu',name:'CoreLab i5-11400',price:699.9,icon:'▣',short:'LGA1200 • 6 núcleos • vídeo integrado',socket:'LGA1200',specs:{Socket:'LGA1200','Núcleos / threads':'6 / 12','Frequência':'2,6–4,4 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Intel Core i5 para multitarefa em placas LGA1200.'},
   {id:'cpu-i3',category:'cpu',name:'CoreLab i3-12100',price:689.9,icon:'▣',short:'LGA1700 • 4 núcleos • vídeo integrado',socket:'LGA1700',specs:{Socket:'LGA1700','Núcleos / threads':'4 / 8','Frequência':'3,3–4,3 GHz','Vídeo integrado':'Sim','Consumo':'60 W'},notes:'Escolha equilibrada para escritório, estudos e atividades administrativas.'},
   {id:'cpu-r5',category:'cpu',name:'RyzenLab R5-4600G',price:729.9,icon:'▣',short:'AM4 • 6 núcleos • vídeo integrado',socket:'AM4',specs:{Socket:'AM4','Núcleos / threads':'6 / 12','Frequência':'3,7–4,2 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Boa opção para computadores sem placa de vídeo dedicada.'},
   {id:'cpu-i5',category:'cpu',name:'CoreLab i5-12400',price:929.9,icon:'▣',short:'LGA1700 • 6 núcleos • vídeo integrado',socket:'LGA1700',specs:{Socket:'LGA1700','Núcleos / threads':'6 / 12','Frequência':'2,5–4,4 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Processador intermediário para multitarefa.'},
+  {id:'cpu-i7-12700',category:'cpu',name:'CoreLab i7-12700',price:1499.9,icon:'▣',short:'LGA1700 • 12 núcleos • vídeo integrado',socket:'LGA1700',specs:{Socket:'LGA1700','Núcleos / threads':'12 / 20','Frequência':'2,1–4,9 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Intel Core i7 de alto desempenho para criação e multitarefa pesada.'},
+  {id:'cpu-i5-13400',category:'cpu',name:'CoreLab i5-13400',price:1199.9,icon:'▣',short:'LGA1700 • 10 núcleos • vídeo integrado',socket:'LGA1700',specs:{Socket:'LGA1700','Núcleos / threads':'10 / 16','Frequência':'2,5–4,6 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Intel Core i5 de 13ª geração.'},
+  {id:'cpu-i7-13700',category:'cpu',name:'CoreLab i7-13700',price:1899.9,icon:'▣',short:'LGA1700 • 16 núcleos • vídeo integrado',socket:'LGA1700',specs:{Socket:'LGA1700','Núcleos / threads':'16 / 24','Frequência':'2,1–5,2 GHz','Vídeo integrado':'Sim','Consumo':'65 W'},notes:'Opção Intel avançada para o orçamento de R$ 4.000.'},
   {id:'ram-8-3200',category:'ram',name:'Teclabs RAM 8 GB',price:159.9,icon:'▤',short:'DDR4 • 3200 MT/s • 1 módulo',memoryType:'DDR4',modules:1,specs:{Tipo:'DDR4','Capacidade':'8 GB','Velocidade':'3200 MT/s','Módulos':'1 × 8 GB','Tensão':'1,2 V'},notes:'Um único módulo funciona em single-channel. Outro módulo igual poderá ser adicionado depois.'},
   {id:'ram-16-3200',category:'ram',name:'Teclabs RAM Kit 16 GB',price:299.9,icon:'▤',short:'DDR4 • 3200 MT/s • 2 módulos',memoryType:'DDR4',modules:2,specs:{Tipo:'DDR4','Capacidade':'16 GB','Velocidade':'3200 MT/s','Módulos':'2 × 8 GB','Tensão':'1,2 V'},notes:'Kit preparado para dual-channel, desde que os dois módulos sejam instalados nos slots indicados no manual.'},
   {id:'ram-16-single',category:'ram',name:'Teclabs RAM 16 GB',price:279.9,icon:'▤',short:'DDR4 • 3200 MT/s • 1 módulo',memoryType:'DDR4',modules:1,specs:{Tipo:'DDR4','Capacidade':'16 GB','Velocidade':'3200 MT/s','Módulos':'1 × 16 GB','Tensão':'1,2 V'},notes:'Módulo único com possibilidade de expansão futura.'},
@@ -40,14 +49,17 @@ const state={category:'motherboard',selected:{},socketOpen:false,ramOpen:false,c
 const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
 
 function renderCategories(){
-  $('#categoryShelf').innerHTML=categories.map(c=>`<button class="category-card ${state.category===c.id?'active':''}" data-category="${c.id}"><b>${c.icon} ${c.name}</b><small>${c.desc}</small></button>`).join('');
-  $$('.category-card').forEach(b=>b.onclick=()=>{state.category=b.dataset.category;renderCategories();renderProducts();});
+  $('#categoryShelf').innerHTML=categories.map(c=>`<section class="catalog-row"><div class="category-card"><b>${c.icon} ${c.name}</b><small>${c.desc}</small></div><div class="row-products">${products.filter(p=>p.category===c.id).map(productCard).join('')}</div></section>`).join('');
+  bindProductActions();
 }
 
 function renderProducts(){
-  const category=categories.find(c=>c.id===state.category); const list=products.filter(p=>p.category===state.category);
-  $('#shelfTitle').textContent=category.name; $('#shelfCount').textContent=`${list.length} modelos disponíveis`;
-  $('#productShelf').innerHTML=list.map(p=>`<article class="product-box"><div class="product-visual visual-${p.category} ${p.category==='motherboard'?'board-'+p.id:''}">${productVisual(p)}</div><span class="catalog-type">${partType(p)}</span><h4>${p.name}</h4><p>${p.short}</p><div class="product-price">${money.format(p.price)}</div><div class="product-actions"><button data-manual="${p.id}">Ver detalhes</button><button class="buy" data-buy="${p.id}" ${state.selected[p.category]?.id===p.id?'disabled':''}>${state.selected[p.category]?.id===p.id?'Escolhido':'Escolher'}</button></div></article>`).join('');
+  renderCategories();
+}
+function productCard(p){
+  return `<article class="product-box"><div class="product-visual visual-${p.category} ${p.category==='motherboard'?'board-platform-'+p.platform:''}">${productVisual(p)}</div><span class="catalog-type">${partType(p)}</span><h4>${p.name}</h4><p>${p.short}</p><div class="product-price">${money.format(p.price)}</div><div class="product-actions"><button data-manual="${p.id}">Ver detalhes</button><button class="buy" data-buy="${p.id}" ${state.selected[p.category]?.id===p.id?'disabled':''}>${state.selected[p.category]?.id===p.id?'Escolhido':'Escolher'}</button></div></article>`;
+}
+function bindProductActions(){
   $$('[data-manual]').forEach(b=>b.onclick=()=>openManual(b.dataset.manual));
   $$('[data-buy]').forEach(b=>b.onclick=()=>selectProduct(b.dataset.buy));
 }
@@ -73,9 +85,9 @@ function selectProduct(id){
   const p=products.find(x=>x.id===id); const old=state.selected[p.category]; state.selected[p.category]=p;
   if(totalUsed()>BUDGET){ if(old)state.selected[p.category]=old;else delete state.selected[p.category]; toast('Esta escolha ultrapassa o orçamento disponível.',true); return; }
   const board=state.selected.motherboard;
-  if(board && p.category==='cpu' && ((board.id==='mb-h610'&&p.socket!=='LGA1700')||(['mb-a320','mb-b450'].includes(board.id)&&p.socket!=='AM4'))) toast('Atenção: o processador escolhido não é compatível com a placa-mãe.',true);
-  if(board && p.category==='ram' && p.memoryType!=='DDR4') toast('Atenção: esta placa aceita DDR4; o módulo escolhido é DDR5.',true);
-  if(board && p.category==='ram' && Number.parseInt(p.specs.Capacidade)>(board.id==='mb-a320'?32:64)) toast(`Atenção: esta placa-mãe suporta no máximo ${board.id==='mb-a320'?32:64} GB de memória.`,true);
+  if(board && p.category==='cpu' && p.socket!==board.socket) toast('Atenção: o processador escolhido não é compatível com o socket da placa-mãe.',true);
+  if(board && p.category==='ram' && p.memoryType!==board.memoryType) toast(`Atenção: esta placa aceita ${board.memoryType}; o módulo escolhido é ${p.memoryType}.`,true);
+  if(board && p.category==='ram' && Number.parseInt(p.specs.Capacidade)>board.maxRam) toast(`Atenção: esta placa-mãe suporta no máximo ${board.maxRam} GB de memória.`,true);
   renderProducts();renderSelected();updateBudget();
 }
 
@@ -92,13 +104,13 @@ function switchView(view){
   if(view==='bench')renderBench(); if(view==='boot')renderBoot(); window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function compatibility(){const b=state.selected.motherboard,c=state.selected.cpu,r=state.selected.ram;const maxRam=b.id==='mb-a320'?32:64;return {cpu:(b.id==='mb-h610'&&c.socket==='LGA1700')||(['mb-a320','mb-b450'].includes(b.id)&&c.socket==='AM4'),ram:r.memoryType==='DDR4'&&Number.parseInt(r.specs.Capacidade)<=maxRam};}
+function compatibility(){const b=state.selected.motherboard,c=state.selected.cpu,r=state.selected.ram;return {cpu:c.socket===b.socket,ram:r.memoryType===b.memoryType&&Number.parseInt(r.specs.Capacidade)<=b.maxRam};}
 function partType(p){return {motherboard:'Placa-mãe',cpu:'Processador',ram:'Memória RAM',storage:p.id.startsWith('nvme')?'SSD NVMe':p.id.startsWith('hdd')?'HD SATA':'SSD SATA',gpu:'Placa de vídeo (GPU)',cooler:'Cooler do processador'}[p.category]||'Componente'}
 
 function renderBench(){
   $('#benchBoardModel').textContent=state.selected.motherboard?.name.replace('Teclabs ','')||'EDU-H610M';
-  $('#motherboard').classList.remove('model-h610','model-a320','model-b450');
-  $('#motherboard').classList.add(state.selected.motherboard?.id==='mb-a320'?'model-a320':state.selected.motherboard?.id==='mb-b450'?'model-b450':'model-h610');
+  $('#motherboard').classList.remove('platform-intel','platform-amd');
+  $('#motherboard').classList.add(`platform-${state.selected.motherboard?.platform||'intel'}`);
   const installed={cpu:state.cpuInstalled,storage:state.storageInstalled,cooler:state.coolerInstalled,gpu:state.gpuInstalled};
   const regularParts=[state.selected.cpu,state.selected.storage,state.selected.cooler,state.selected.gpu].filter(p=>p&&!installed[p.category]);
   const installedRamIds=Object.values(state.ramInstalledSlots);
