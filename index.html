@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.9.0" />
+  <link rel="stylesheet" href="css/style.css?v=1.0.0" />
 </head>
 <body>
   <header class="topbar">
@@ -46,9 +46,10 @@
     </section>
 
     <nav class="steps" aria-label="Etapas do laboratório">
-      <button class="step active" data-view="store"><span>1</span> Escolher peças</button>
-      <button class="step" data-view="bench"><span>2</span> Ir para a bancada</button>
-      <button class="step" data-view="boot"><span>3</span> Testar montagem</button>
+      <button class="step active" data-view="store"><span>1</span> Comprar peças</button>
+      <button class="step" data-view="bench"><span>2</span> Montar computador</button>
+      <button class="step" data-view="boot"><span>3</span> POST, BIOS e bipes</button>
+      <button class="step" data-view="os"><span>4</span> Instalar e manter</button>
     </nav>
 
     <section id="storeView" class="view active">
@@ -154,10 +155,31 @@
         <div class="monitor"><div id="monitorScreen" class="monitor-screen"><span>Pressione o botão de energia</span></div><div class="monitor-stand"></div></div>
       </div>
       <div id="bootReport" class="boot-report">
-        <span class="eyebrow">PRIMEIRO BOOT</span>
+        <span class="eyebrow">POST • BIOS/UEFI • BIPES</span>
         <h2>Vamos descobrir se a montagem funciona?</h2>
-        <p>O resultado dependerá das peças escolhidas e das ações realizadas na bancada.</p>
+        <p>Ligue o computador. O POST verificará as peças e o alto-falante poderá emitir códigos sonoros de diagnóstico.</p>
+        <div class="beep-guide">
+          <button type="button" data-beep="ok"><b>1 bipe curto</b><small>POST concluído</small></button>
+          <button type="button" data-beep="ram"><b>Bipes contínuos</b><small>Verificar memória</small></button>
+          <button type="button" data-beep="video"><b>1 longo + 2 curtos</b><small>Verificar vídeo</small></button>
+          <button type="button" data-beep="power"><b>Sem bipe</b><small>Verificar energia</small></button>
+        </div>
       </div>
+    </section>
+
+    <section id="osView" class="view">
+      <div class="section-heading">
+        <div><span class="eyebrow">JORNADA DO TÉCNICO</span><h2>Prepare, instale e faça a manutenção</h2></div>
+        <p>O computador montado foi salvo. Continue nos laboratórios já existentes sem perder a configuração escolhida.</p>
+      </div>
+      <div id="virtualPcSummary" class="virtual-pc-summary"></div>
+      <div class="journey-grid">
+        <article class="journey-card"><span>1</span><h3>Criar o pendrive</h3><p>Use o Rufus, escolha a ISO e defina GPT/MBR e UEFI/BIOS.</p><a class="button primary" href="https://sammyfreitas.github.io/Laboratorio_Virtual/" data-journey="rufus">Abrir Rufus e BIOS</a></article>
+        <article class="journey-card"><span>2</span><h3>Instalar o sistema</h3><p>Particione o armazenamento e instale Windows 10, Windows 11 ou Ubuntu.</p><a class="button primary" href="https://sammyfreitas.github.io/Laboratorio_Virtual/instalacao-windows11.html" data-journey="install">Instalar sistema</a></article>
+        <article class="journey-card"><span>3</span><h3>Manutenção do Windows</h3><p>Abra as ferramentas do sistema, diagnostique falhas e execute os reparos.</p><a class="button primary" href="https://sammyfreitas.github.io/Laboratorio-Windows/" data-journey="maintenance">Abrir manutenção</a></article>
+        <article class="journey-card"><span>4</span><h3>Oficina SOS PC</h3><p>Continue na oficina integrada com materiais e simulador do Windows 10.</p><a class="button primary" href="https://sammyfreitas.github.io/oficina-sos-pc/" data-journey="sos">Abrir oficina</a></article>
+      </div>
+      <p class="journey-note">Integração inicial: a ficha do computador fica salva no navegador. Na próxima evolução, cada laboratório passará a ler a configuração e adaptar automaticamente suas atividades.</p>
     </section>
   </main>
 
@@ -173,6 +195,6 @@
     <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
   </footer>
 
-  <script src="js/app.js?v=0.9.0"></script>
+  <script src="js/app.js?v=1.0.0"></script>
 </body>
 </html>
