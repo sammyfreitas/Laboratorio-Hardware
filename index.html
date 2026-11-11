@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=0.8.0" />
+  <link rel="stylesheet" href="css/style.css?v=0.9.0" />
 </head>
 <body>
   <header class="topbar">
@@ -33,9 +33,11 @@
         <span>Orçamento disponível</span>
         <strong id="budgetTotal">R$ 2.700,00</strong>
         <div class="budget-options" aria-label="Escolher orçamento inicial">
+          <button type="button" data-budget="2500">R$ 2.500</button>
           <button type="button" data-budget="2700" class="active">R$ 2.700</button>
           <button type="button" data-budget="3000">R$ 3.000</button>
           <button type="button" data-budget="3500">R$ 3.500</button>
+          <button type="button" data-budget="4000">R$ 4.000</button>
         </div>
         <div class="budget-row"><span>Utilizado</span><b id="budgetUsed">R$ 0,00</b></div>
         <div class="budget-row"><span>Saldo</span><b id="budgetRemaining">R$ 2.700,00</b></div>
@@ -55,12 +57,11 @@
         <p>Selecione uma prateleira e examine as caixas. No computador, passe o mouse; no celular, toque em “Ver detalhes”.</p>
       </div>
 
-      <div id="categoryShelf" class="category-shelf" aria-label="Categorias de peças"></div>
-
       <div class="store-layout">
         <section class="product-area">
-          <div class="shelf-title"><h3 id="shelfTitle">Placas-mãe</h3><span id="shelfCount"></span></div>
-          <div id="productShelf" class="product-shelf"></div>
+          <div id="categoryShelf" class="category-shelf" aria-label="Estantes de componentes"></div>
+          <div class="shelf-title" hidden><h3 id="shelfTitle">Componentes</h3><span id="shelfCount"></span></div>
+          <div id="productShelf" class="product-shelf" hidden></div>
         </section>
 
         <aside class="selection-panel">
@@ -172,6 +173,6 @@
     <p>Todos os Direitos Reservados • <a href="https://teclabsinfo.com.br/" target="_blank" rel="noreferrer">Teclabs Info</a> • <a href="https://sammyfreitas.github.io/portfolio/" target="_blank" rel="noreferrer">Prof. Anthony Samuel Sobral de Freitas</a> • Nov/26</p>
   </footer>
 
-  <script src="js/app.js?v=0.8.0"></script>
+  <script src="js/app.js?v=0.9.0"></script>
 </body>
 </html>
